@@ -1,16 +1,46 @@
-//
-//  ContentView.swift
-//  hirokiKadai1
-//
-//  Created by 河村宇記 on 2021/12/12.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @State private var num: [Int?] = [nil, nil, nil, nil, nil]
+    @State private var total = 0
+    
     var body: some View {
-        Text("Hello, world!")
+        VStack {
+            TextField("", value: $num[0], formatter: NumberFormatter())
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .keyboardType(.numberPad)
+                .padding()
+            
+            TextField("", value: $num[1], formatter: NumberFormatter())
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .keyboardType(.numberPad)
+                .padding()
+            
+            TextField("", value: $num[2], formatter: NumberFormatter())
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .keyboardType(.numberPad)
+                .padding()
+            
+            TextField("", value: $num[3], formatter: NumberFormatter())
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .keyboardType(.numberPad)
+                .padding()
+            
+            TextField("", value: $num[4], formatter: NumberFormatter())
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .keyboardType(.numberPad)
+                .padding()
+            
+            Button(action: {
+                total = num.map{$0 ?? 0}.reduce(0, +)
+            }) {
+                Text("足す")
+            }
             .padding()
+            
+            Text(String(total))
+                .padding()
+        }
     }
 }
 
