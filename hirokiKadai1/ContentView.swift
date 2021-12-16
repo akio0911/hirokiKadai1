@@ -6,31 +6,12 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            TextField("", value: $num[0], formatter: NumberFormatter())
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .keyboardType(.numberPad)
-                .padding()
-            
-            TextField("", value: $num[1], formatter: NumberFormatter())
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .keyboardType(.numberPad)
-                .padding()
-            
-            TextField("", value: $num[2], formatter: NumberFormatter())
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .keyboardType(.numberPad)
-                .padding()
-            
-            TextField("", value: $num[3], formatter: NumberFormatter())
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .keyboardType(.numberPad)
-                .padding()
-            
-            TextField("", value: $num[4], formatter: NumberFormatter())
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .keyboardType(.numberPad)
-                .padding()
-            
+            NumberInputView(value: $num[0])
+            NumberInputView(value: $num[1])
+            NumberInputView(value: $num[2])
+            NumberInputView(value: $num[3])
+            NumberInputView(value: $num[4])
+
             Button(action: {
                 total = num.map{$0 ?? 0}.reduce(0, +)
             }) {
@@ -41,6 +22,17 @@ struct ContentView: View {
             Text(String(total))
                 .padding()
         }
+    }
+}
+
+struct NumberInputView: View {
+    @Binding var value: Int?
+
+    var body: some View {
+        TextField("", value: $value, formatter: NumberFormatter())
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .keyboardType(.numberPad)
+            .padding()
     }
 }
 
